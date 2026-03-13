@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://tickflow.live/sitemap.xml
+
+# Baidu
+User-agent: Baiduspider
+Allow: /
+
+# Bing
+User-agent: bingbot
+Allow: /
+
+# Google
+User-agent: Googlebot
+Allow: /

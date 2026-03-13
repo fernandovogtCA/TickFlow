@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About · MarketBoard</title>
+<meta name="description" content="MarketBoard is a real-time financial dashboard for offices, trading desks, and professional environments. Built by Fernando Vogt.">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#050a0e; --accent:#00ff88; --accent2:#00c8ff;
+  --text:#e8f4f8; --muted:#3a5060; --border:rgba(0,255,136,0.13);
+  --panel:rgba(8,20,30,0.95);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;min-height:100vh;}
+
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(0,255,136,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,.02) 1px,transparent 1px);
+  background-size:70px 70px;pointer-events:none;z-index:0;
+}
+body::after{
+  content:'';position:fixed;inset:0;
+  background:radial-gradient(ellipse at 20% 20%,rgba(0,200,255,.05) 0%,transparent 55%),radial-gradient(ellipse at 80% 80%,rgba(0,255,136,.04) 0%,transparent 50%);
+  pointer-events:none;z-index:0;
+}
+
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:90;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.8vh 3vw;
+  background:rgba(5,10,14,.85);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(12px);
+}
+.nav-logo{font-family:'Share Tech Mono',monospace;font-size:.9rem;color:var(--accent);letter-spacing:.25em;text-decoration:none;opacity:.8;transition:opacity .2s;}
+.nav-logo:hover{opacity:1;}
+.nav-links{display:flex;gap:2rem;}
+.nav-links a{font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--muted);letter-spacing:.2em;text-decoration:none;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover{color:var(--accent2);}
+.nav-links a.active{color:var(--accent);}
+
+main{
+  position:relative;z-index:1;
+  max-width:860px;margin:0 auto;
+  padding:12vh 2rem 6rem;
+}
+
+.page-eyebrow{
+  font-family:'Share Tech Mono',monospace;
+  font-size:.7rem;letter-spacing:.5em;color:var(--accent);
+  text-transform:uppercase;margin-bottom:1.5rem;opacity:.7;
+}
+
+h1{
+  font-family:'Bebas Neue',cursive;
+  font-size:clamp(3rem,6vw,5.5rem);
+  line-height:.9;letter-spacing:.02em;
+  color:var(--text);
+  text-shadow:0 0 60px rgba(0,255,136,.1);
+  margin-bottom:2.5rem;
+}
+h1 span{color:var(--accent);}
+
+.lead{
+  font-size:1.25rem;font-weight:600;letter-spacing:.04em;
+  color:var(--text);line-height:1.6;margin-bottom:2rem;
+  border-left:3px solid var(--accent);padding-left:1.5rem;
+}
+
+p{font-size:1rem;line-height:1.75;color:rgba(232,244,248,.75);margin-bottom:1.5rem;letter-spacing:.02em;}
+
+.divider{width:100%;height:1px;background:linear-gradient(90deg,var(--border),rgba(0,200,255,.15),transparent);margin:3rem 0;}
+
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;margin:2.5rem 0;}
+
+.feature-card{
+  padding:1.8rem;
+  border:1px solid var(--border);
+  background:rgba(0,255,136,.02);
+  transition:border-color .2s, background .2s;
+}
+.feature-card:hover{border-color:rgba(0,255,136,.3);background:rgba(0,255,136,.04);}
+.feature-icon{font-size:1.5rem;margin-bottom:.8rem;}
+.feature-title{font-family:'Share Tech Mono',monospace;font-size:.78rem;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;margin-bottom:.6rem;}
+.feature-desc{font-size:.92rem;line-height:1.6;color:rgba(232,244,248,.65);}
+
+.use-cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin:2rem 0;}
+.use-case{
+  padding:1.2rem 1.5rem;
+  border:1px solid rgba(0,200,255,.12);
+  background:rgba(0,200,255,.03);
+  font-family:'Share Tech Mono',monospace;
+  font-size:.7rem;letter-spacing:.15em;color:var(--accent2);
+  text-transform:uppercase;
+}
+
+.author-block{
+  display:flex;align-items:flex-start;gap:2rem;
+  padding:2rem;border:1px solid var(--border);
+  background:rgba(0,255,136,.02);
+  margin-top:3rem;
+}
+.author-avatar{
+  width:64px;height:64px;border-radius:50%;
+  background:linear-gradient(135deg,rgba(0,255,136,.2),rgba(0,200,255,.2));
+  border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',cursive;font-size:1.8rem;color:var(--accent);
+  flex-shrink:0;
+}
+.author-info .name{font-family:'Share Tech Mono',monospace;font-size:.85rem;letter-spacing:.2em;color:var(--accent);margin-bottom:.4rem;}
+.author-info p{font-size:.9rem;line-height:1.6;color:rgba(232,244,248,.65);margin:0;}
+
+.cta-row{display:flex;gap:1rem;flex-wrap:wrap;margin-top:3rem;}
+.cta-btn{
+  font-family:'Share Tech Mono',monospace;font-size:.75rem;letter-spacing:.2em;
+  padding:.9rem 2rem;text-decoration:none;text-transform:uppercase;
+  transition:all .2s;display:inline-block;
+}
+.cta-primary{background:rgba(0,255,136,.1);border:1px solid var(--accent);color:var(--accent);}
+.cta-primary:hover{background:rgba(0,255,136,.2);box-shadow:0 0 20px rgba(0,255,136,.2);}
+.cta-secondary{background:transparent;border:1px solid var(--muted);color:var(--muted);}
+.cta-secondary:hover{border-color:var(--accent2);color:var(--accent2);}
+
+footer{
+  position:relative;z-index:1;
+  text-align:center;padding:2rem;
+  font-family:'Share Tech Mono',monospace;font-size:.65rem;
+  color:var(--muted);letter-spacing:.15em;
+  border-top:1px solid var(--border);
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <svg width="22" height="22" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:6px;">
+      <rect x="2" y="16" width="4" height="10" fill="#00ff88" opacity="0.5"/>
+      <rect x="8" y="10" width="4" height="16" fill="#00ff88" opacity="0.75"/>
+      <rect x="14" y="5" width="4" height="21" fill="#00ff88"/>
+      <rect x="20" y="9" width="4" height="17" fill="#00ff88" opacity="0.75"/>
+      <polyline points="4,15 10,9 16,4 24,8" stroke="#00c8ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <circle cx="24" cy="8" r="2" fill="#00c8ff"><animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/></circle>
+    </svg>
+    <span style="vertical-align:middle;font-size:1.1rem;letter-spacing:.1em;font-family:Bebas Neue,cursive;">Tick</span><span style="vertical-align:middle;font-size:1.1rem;letter-spacing:.1em;font-family:Bebas Neue,cursive;color:#00c8ff;">Flow</span><span style="vertical-align:middle;font-size:.65rem;letter-spacing:.2em;font-family:Share Tech Mono,monospace;color:#3a5060;margin-left:4px;">.live</span>
+  </a>
+  <div class="nav-links">
+    <a href="about.html" class="active">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy-policy.html">Privacy</a>
+  </div>
+</nav>
+
+<main>
+  <div class="page-eyebrow">About MarketBoard</div>
+
+  <h1>Real-time markets.<br><span>Always on.</span></h1>
+
+  <p class="lead">
+    MarketBoard is a fullscreen financial display designed for offices, trading desks, co-working spaces, and any professional environment that needs live market data at a glance — no clutter, no noise, just numbers.
+  </p>
+
+  <p>
+    Whether it's a 65" screen in a trading room, a monitor in a financial advisory office, or a display in a crypto exchange lobby, MarketBoard turns any screen into a live market dashboard. Fully customizable — choose which assets to show, adjust font sizes, pick a color theme, and cast it to any Chromecast-enabled display.
+  </p>
+
+  <p>
+    MarketBoard tracks cryptocurrencies, US equity indices, commodities, and foreign exchange pairs — including major, Asian, and emerging market currencies — all updated in real time.
+  </p>
+
+  <div class="divider"></div>
+
+  <div class="page-eyebrow">What's included</div>
+
+  <div class="features">
+    <div class="feature-card">
+      <div class="feature-icon">₿</div>
+      <div class="feature-title">Crypto Markets</div>
+      <div class="feature-desc">Bitcoin, Ethereum, Solana, BNB, XRP, Cardano and more — live prices with 24h change.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📈</div>
+      <div class="feature-title">Equity Indices</div>
+      <div class="feature-desc">S&P 500, Nasdaq, Dow Jones, Russell 2000, and VIX — the benchmarks that matter.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">◉</div>
+      <div class="feature-title">Commodities</div>
+      <div class="feature-desc">Gold, Silver, and Crude Oil WTI — essential for macro and portfolio context.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">¥</div>
+      <div class="feature-title">FX Pairs</div>
+      <div class="feature-desc">Major, Asian, and EM currencies — EUR/USD, USD/JPY, USD/CNY, USD/BRL and more.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⛶</div>
+      <div class="feature-title">Fullscreen Mode</div>
+      <div class="feature-desc">One click and it fills any screen. Chromecast support built in for wireless casting.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚙</div>
+      <div class="feature-title">Fully Customizable</div>
+      <div class="feature-desc">Choose your assets, currency, font size, color theme, and refresh rate. Settings saved locally.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="page-eyebrow">Ideal for</div>
+
+  <div class="use-cases">
+    <div class="use-case">Trading Desks</div>
+    <div class="use-case">Financial Offices</div>
+    <div class="use-case">Crypto Exchanges</div>
+    <div class="use-case">Co-working Spaces</div>
+    <div class="use-case">Bank Branches</div>
+    <div class="use-case">Investment Firms</div>
+    <div class="use-case">News Rooms</div>
+    <div class="use-case">University Labs</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="page-eyebrow">The creator</div>
+
+  <div class="author-block">
+    <div class="author-avatar">FV</div>
+    <div class="author-info">
+      <div class="name">Fernando Vogt</div>
+      <p>
+        Independent developer and market enthusiast. MarketBoard was built out of a simple need: a clean, distraction-free way to keep live market data visible in professional environments. It's free to use, continuously updated, and open to feedback.
+      </p>
+    </div>
+  </div>
+
+  <div class="cta-row">
+    <a href="index.html" class="cta-btn cta-primary">⛶ Open Dashboard</a>
+    <a href="contact.html" class="cta-btn cta-secondary">✉ Get in Touch</a>
+  </div>
+</main>
+
+<footer>
+  © 2025 MarketBoard · Fernando Vogt · fernandovogt@gmail.com · For informational use only
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tools for Traders · TickFlow</title>
+<meta name="description" content="Recommended tools and platforms for traders. These links support TickFlow and give you exclusive benefits.">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#050a0e; --accent:#00ff88; --accent2:#00c8ff;
+  --text:#e8f4f8; --muted:#3a5060; --border:rgba(0,255,136,0.13);
+  --panel:rgba(8,20,30,0.95);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;min-height:100vh;}
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(0,255,136,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,.02) 1px,transparent 1px);
+  background-size:70px 70px;pointer-events:none;z-index:0;
+}
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:90;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.8vh 3vw;
+  background:rgba(5,10,14,.85);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(12px);
+}
+.nav-logo{font-family:'Share Tech Mono',monospace;font-size:.9rem;color:var(--accent);letter-spacing:.25em;text-decoration:none;opacity:.8;transition:opacity .2s;}
+.nav-logo:hover{opacity:1;}
+.nav-links{display:flex;gap:2rem;}
+.nav-links a{font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--muted);letter-spacing:.2em;text-decoration:none;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover{color:var(--accent2);}
+.nav-links a.active{color:var(--accent);}
+
+main{
+  position:relative;z-index:1;
+  max-width:900px;margin:0 auto;
+  padding:12vh 2rem 6rem;
+}
+
+.page-title{
+  font-family:'Bebas Neue',cursive;
+  font-size:3.5rem;letter-spacing:.15em;
+  color:var(--accent);margin-bottom:.5rem;
+}
+.page-sub{
+  font-family:'Share Tech Mono',monospace;
+  font-size:.75rem;color:var(--muted);letter-spacing:.15em;
+  margin-bottom:.8rem;
+}
+.disclosure{
+  font-family:'Share Tech Mono',monospace;
+  font-size:.65rem;color:var(--muted);
+  border:1px solid rgba(0,255,136,.08);
+  background:rgba(0,255,136,.02);
+  padding:.7rem 1rem;border-radius:4px;
+  margin-bottom:3rem;letter-spacing:.05em;
+}
+.disclosure span{color:var(--accent);opacity:.7;}
+
+.tools-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(380px,1fr));
+  gap:1.5rem;
+}
+
+.tool-card{
+  border:1px solid var(--border);
+  background:rgba(8,20,30,.6);
+  border-radius:6px;
+  padding:1.8rem;
+  text-decoration:none;
+  display:block;
+  transition:all .25s;
+  position:relative;
+  overflow:hidden;
+}
+.tool-card::before{
+  content:'';position:absolute;inset:0;opacity:0;transition:opacity .25s;
+}
+.tool-card:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.3);}
+
+.tool-card.binance { border-color:rgba(240,185,11,.2); }
+.tool-card.binance::before { background:radial-gradient(ellipse at top left,rgba(240,185,11,.04),transparent 70%); }
+.tool-card.binance:hover { border-color:rgba(240,185,11,.4); box-shadow:0 8px 30px rgba(240,185,11,.08); }
+.tool-card.binance:hover::before { opacity:1; }
+
+.tool-card.tradingview { border-color:rgba(41,98,255,.2); }
+.tool-card.tradingview::before { background:radial-gradient(ellipse at top left,rgba(41,98,255,.05),transparent 70%); }
+.tool-card.tradingview:hover { border-color:rgba(41,98,255,.4); box-shadow:0 8px 30px rgba(41,98,255,.08); }
+.tool-card.tradingview:hover::before { opacity:1; }
+
+.tool-card.etoro { border-color:rgba(0,200,100,.2); }
+.tool-card.etoro::before { background:radial-gradient(ellipse at top left,rgba(0,200,100,.04),transparent 70%); }
+.tool-card.etoro:hover { border-color:rgba(0,200,100,.4); box-shadow:0 8px 30px rgba(0,200,100,.08); }
+.tool-card.etoro:hover::before { opacity:1; }
+
+.tool-card.pepperstone { border-color:rgba(220,50,50,.2); }
+.tool-card.pepperstone::before { background:radial-gradient(ellipse at top left,rgba(220,50,50,.04),transparent 70%); }
+.tool-card.pepperstone:hover { border-color:rgba(220,50,50,.4); box-shadow:0 8px 30px rgba(220,50,50,.08); }
+.tool-card.pepperstone:hover::before { opacity:1; }
+
+.tool-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;}
+.tool-name{
+  font-family:'Bebas Neue',cursive;
+  font-size:1.8rem;letter-spacing:.1em;
+}
+.tool-category{
+  font-family:'Share Tech Mono',monospace;
+  font-size:.58rem;letter-spacing:.15em;
+  color:var(--muted);
+  border:1px solid rgba(255,255,255,.08);
+  padding:.2rem .5rem;border-radius:2px;
+  margin-top:.3rem;
+}
+.tool-benefit{
+  font-family:'Share Tech Mono',monospace;
+  font-size:.72rem;letter-spacing:.08em;
+  padding:.3rem .7rem;border-radius:3px;
+  border:1px solid currentColor;
+  white-space:nowrap;
+}
+
+.binance .tool-name  { color:#f0b90b; }
+.binance .tool-benefit { color:#f0b90b; }
+.tradingview .tool-name { color:#2962ff; }
+.tradingview .tool-benefit { color:#2962ff; }
+.etoro .tool-name { color:#00c864; }
+.etoro .tool-benefit { color:#00c864; }
+.pepperstone .tool-name { color:#dc3232; }
+.pepperstone .tool-benefit { color:#dc3232; }
+
+.tool-desc{
+  font-family:'Rajdhani',sans-serif;
+  font-size:.95rem;color:#a0b8c8;
+  line-height:1.6;margin-bottom:1.2rem;
+}
+.tool-features{
+  display:flex;flex-wrap:wrap;gap:.4rem;
+  margin-bottom:1.5rem;
+}
+.tool-feature{
+  font-family:'Share Tech Mono',monospace;
+  font-size:.58rem;letter-spacing:.08em;
+  color:var(--muted);
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.06);
+  padding:.18rem .5rem;border-radius:2px;
+}
+.tool-cta{
+  font-family:'Share Tech Mono',monospace;
+  font-size:.7rem;letter-spacing:.12em;
+  color:var(--muted);
+  display:flex;align-items:center;gap:.5rem;
+}
+.tool-cta::after{content:'→';transition:transform .2s;}
+.tool-card:hover .tool-cta::after{transform:translateX(4px);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Tick<span style="color:var(--accent2)">Flow</span></a>
+  <div class="nav-links">
+    <a href="index.html">DASHBOARD</a>
+    <a href="about.html">ABOUT</a>
+    <a href="contact.html">CONTACT</a>
+    <a href="tools.html" class="active">TOOLS</a>
+    <a href="privacy-policy.html">PRIVACY</a>
+  </div>
+</nav>
+
+<main>
+  <div class="page-title">Tools for Traders</div>
+  <div class="page-sub">RECOMMENDED PLATFORMS · CURATED FOR TICKFLOW USERS</div>
+  <div class="disclosure">
+    <span>⚡ Transparency notice:</span> Some links on this page are affiliate links. If you register through them, TickFlow receives a small commission — at no extra cost to you. In most cases you also receive an exclusive benefit. We only recommend platforms we consider reliable and relevant for traders.
+  </div>
+
+  <div class="tools-grid">
+
+    <!-- Binance -->
+    <a href="https://www.binance.com/register?ref=TICKFLOW" target="_blank" rel="noopener" class="tool-card binance">
+      <div class="tool-header">
+        <div>
+          <div class="tool-name">Binance</div>
+          <div class="tool-category">CRYPTO EXCHANGE</div>
+        </div>
+        <div class="tool-benefit">5% fee discount</div>
+      </div>
+      <div class="tool-desc">World's largest crypto exchange by volume. Trade Bitcoin, Ethereum, Solana and 350+ assets with industry-low fees. Register via TickFlow and get 5% off all trading fees.</div>
+      <div class="tool-features">
+        <span class="tool-feature">Spot Trading</span>
+        <span class="tool-feature">Futures</span>
+        <span class="tool-feature">350+ Assets</span>
+        <span class="tool-feature">Low Fees</span>
+        <span class="tool-feature">Mobile App</span>
+      </div>
+      <div class="tool-cta">Open account on Binance</div>
+    </a>
+
+    <!-- TradingView -->
+    <a href="https://www.tradingview.com/?aff_id=164388" target="_blank" rel="noopener" class="tool-card tradingview">
+      <div class="tool-header">
+        <div>
+          <div class="tool-name">TradingView</div>
+          <div class="tool-category">CHARTING PLATFORM</div>
+        </div>
+        <div class="tool-benefit">$15 credit</div>
+      </div>
+      <div class="tool-desc">Professional charting platform used by millions of traders. 100+ indicators, drawing tools, screeners and real-time alerts. Register via TickFlow and get $15 toward any plan.</div>
+      <div class="tool-features">
+        <span class="tool-feature">100+ Indicators</span>
+        <span class="tool-feature">Multi-chart</span>
+        <span class="tool-feature">Alerts</span>
+        <span class="tool-feature">Screener</span>
+        <span class="tool-feature">Pine Script</span>
+      </div>
+      <div class="tool-cta">Open TradingView with $15 credit</div>
+    </a>
+
+    <!-- eToro -->
+    <a href="https://etoro.tw/tickflow" target="_blank" rel="noopener" class="tool-card etoro">
+      <div class="tool-header">
+        <div>
+          <div class="tool-name">eToro</div>
+          <div class="tool-category">SOCIAL TRADING</div>
+        </div>
+        <div class="tool-benefit">Copy top traders</div>
+      </div>
+      <div class="tool-desc">Trade stocks, crypto, ETFs and commodities on one platform. Unique CopyTrader feature lets you mirror top performers automatically. Used by 30M+ investors worldwide.</div>
+      <div class="tool-features">
+        <span class="tool-feature">Stocks & ETFs</span>
+        <span class="tool-feature">Crypto</span>
+        <span class="tool-feature">CopyTrader</span>
+        <span class="tool-feature">Zero commission stocks</span>
+      </div>
+      <div class="tool-cta">Start investing on eToro</div>
+    </a>
+
+    <!-- Pepperstone -->
+    <a href="https://pepperstone.com/?affid=tickflow" target="_blank" rel="noopener" class="tool-card pepperstone">
+      <div class="tool-header">
+        <div>
+          <div class="tool-name">Pepperstone</div>
+          <div class="tool-category">FOREX & CFD BROKER</div>
+        </div>
+        <div class="tool-benefit">Tight spreads</div>
+      </div>
+      <div class="tool-desc">Award-winning broker for forex, indices and commodities. Spreads from 0.0 pips on Razor account. Regulated in multiple jurisdictions. Trusted by active traders in 160+ countries.</div>
+      <div class="tool-features">
+        <span class="tool-feature">Forex</span>
+        <span class="tool-feature">Indices CFDs</span>
+        <span class="tool-feature">0.0 pip spreads</span>
+        <span class="tool-feature">MT4 / MT5</span>
+        <span class="tool-feature">cTrader</span>
+      </div>
+      <div class="tool-cta">Open account on Pepperstone</div>
+    </a>
+
+  </div>
+</main>
+
+</body>
+</html>
